@@ -1,0 +1,182 @@
+$primary-color:#f78b08;
+$secondary-color: rgb(173, 173, 173);
+$primary-bg: #333;
+$secondary-bg:#262626;
+$third-bg:#525252;
+$text-color: white;
+$text-mute: rgb(90, 90, 90);
+
+.calendar {
+    display: flex;
+    width: max(1200px, 50vw);
+    height: 600px;
+    // border: 1px solid red;
+    margin: auto;
+    border-radius: 15px;
+    color: $text-color;
+    overflow: hidden;
+}
+
+.calendar .calendar-events {
+    width: 35%;
+    background-color:  $secondary-bg;
+    padding: 20px;
+}
+
+.calendar-events .event-list-item {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 60px auto auto 1fr 100px;
+    grid-template-areas: 
+        "day title"
+        "day by"
+        "day weekday"
+        "desc desc"
+        "links links";
+    column-gap: 10px;
+}
+
+.calendar-events .event-page {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 60px auto auto 1fr 100px;
+    grid-template-areas: 
+        "day title"
+        "day by"
+        "day weekday"
+        "desc desc"
+        "links links";
+    column-gap: 10px;
+}
+
+.event-page .event-date span {
+    font-size: 2.9em;
+}
+.event-page .event-date {
+    max-width: 200px;
+    max-height: 200px;
+    grid-area: day;
+    text-align: center;
+    // border: 1px solid white;
+    padding: 10px;
+    background-color: $third-bg;
+}
+.event-page .event-weekday {
+    grid-area: weekday;
+    width: 100%;
+    font-size: 0.7em;
+    padding-top: 5px;
+}
+.event-page .event-title {
+    grid-area: title;
+    align-self: center;
+    margin: 0;
+}
+.event-page .event-by {
+    grid-area: by;
+    font-size: 0.9em;
+    width: 100%;
+}
+.event-page .event-description {
+    grid-area: desc;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+.event-page .event-links {
+    grid-area: links;
+    padding: 10px;
+    width: 100%;
+}
+
+.calendar .calendar-view {
+    width: 65%;
+    background-color: $secondary-bg;
+}
+
+.calendar-header {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: 50px;
+    padding: 5px 15px 5px 15px;
+    height: 50px;
+    background-color: $third-bg;
+}
+
+.calendar-header span {
+    font-size: 2.5em;
+
+}
+.calendar-nav-btns {
+    display: flex;
+    align-items: center;
+}
+.btn {
+    background-color: $primary-color;
+    border: 0;
+    padding: 10px;
+    color: $text-color;
+    font-size: 1em;
+}
+.calendar-nav-btns .btn:hover {
+    background-color:#ac6100;
+}
+.calendar-nav-btns .btn:first-child {
+    border-right: 1px solid black;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.calendar-nav-btns .btn:last-child {
+    border-left: 1px solid black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 20px;
+    width: 100%;
+    height: calc(100% - 62px);
+}
+
+.calendar-week {
+    display: flex;
+    width: 100%;
+}
+
+.week-header {
+    border-bottom: 1px solid rgb(80, 78, 78);
+    padding-left: 45px;
+}
+
+.calendar-day:not(.within-month) {
+    color: $text-mute;
+    background-color: $secondary-bg;
+}
+.calendar-day.active {
+    border: 2px solid $primary-color;
+}
+.calendar-day.today {
+    background-color: rgba($primary-color, 0.5);
+    color: $text-color;
+}
+.calendar-day.today:hover {
+    background-color: rgba($primary-color, 0.7);
+}
+
+
+.calendar-day {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-grow: 1;
+    font-size: 1.1em;
+    padding: 5px;
+    cursor: pointer;
+    background-color: $primary-bg;
+    border: 2px solid $primary-bg;
+}
+.calendar-day:hover {
+    background-color: rgba($secondary-color, 0.5);
+}

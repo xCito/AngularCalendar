@@ -1,0 +1,58 @@
+<div class="calendar">
+    <div class="calendar-events">
+        <ng-container *ngIf="dayInFocus.events.length === 0 then noEvents; else hasEvents"></ng-container>
+        <ng-template #hasEvents>
+            <ng-container *ngIf="dayInFocus.events.length === 1 then singleEvent; else manyEvents"></ng-container>
+        </ng-template>
+        
+        <ng-template #noEvents>No Events</ng-template>
+        <ng-template #singleEvent>
+            <div class="event-page">
+                <div class="event-date">
+                    <span>{{dayInFocus.value | ordinalSuffix}}</span>
+                    <br />
+                    {{dayInFocus.month | numToMonth}}
+                </div> 
+                <h3 class="event-title">{{dayInFocus.events[0].title}}</h3>
+                <div class="event-by">by: {{dayInFocus.events[0].by}}</div>
+                <div class="event-weekday">{{dayInFocus.weekday | numToWeekday: 'short'}}</div>
+                <div class="event-description">
+                    Description
+                    <div>{{dayInFocus.events[0].description}}</div>
+                </div>
+                <div class="event-links">
+                    <button class="btn">Share</button>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #manyEvents>
+            <div class="event-list">
+                <div class="event-list-item" *ngFor="let event of dayInFocus.events;">
+                    <span>{{event.title}}</span>
+                </div> 
+            </div>
+        </ng-template>
+    </div>
+    <div class="calendar-view">
+        <div class="calendar-header">
+            <span>{{month | numToMonth}} {{year}}</span>
+            <div class="calendar-nav-btns">
+                <button class="btn" (click)="onPrevClick()">Prev</button>
+                <button class="btn" (click)="onTodayClick()">Today</button>
+                <button class="btn" (click)="onNextClick()">Next</button>
+            </div>
+        </div>
+        <div class="calendar-body">                
+            <span class="week-header">Sun</span>
+            <span class="week-header">Mon</span>
+            <span class="week-header">Tue</span>
+            <span class="week-header">Wed</span>
+            <span class="week-header">Thu</span>
+            <span class="week-header">Fri</span>
+            <span class="week-header">Sat</span>
+            <div class="calendar-day" *ngFor="let day of days;" (click)="onDayClick(day)" [ngClass]="{today: day.isToday, 'within-month': day.isInFocusMonth, active: day === dayInFocus}">
+                <span class="calendar-num">{{day.value}}</span>
+            </div>
+        </div>
+    </div>
+</div>
